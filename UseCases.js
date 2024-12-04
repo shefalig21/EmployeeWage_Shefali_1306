@@ -95,3 +95,5 @@ function checkAttendanceAndCalculateWages() {
 let result = checkAttendanceAndCalculateWages();
 console.log("Total worked hours: " + result.workedHours);
 console.log("Final wages: $" + result.dailyWages);
+
+
