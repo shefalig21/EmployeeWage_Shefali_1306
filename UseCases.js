@@ -178,7 +178,7 @@ function checkAttendance() {
     let Salary = 0;
     let totalDays = 0;
   
-    for (let i = 0; i < 20; i++) {
+    while(totalDays<20 && totalHours<160){
       let attendance = checkAttendance();
       if (attendance) {
         let result = calculateDailyWages();
