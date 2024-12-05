@@ -418,4 +418,101 @@ function calculateDailyWages() {
   
   userDetails();
 
+  //Use case-8: take month as input and now print slary for eomployees for specific month
+
+
+const partTime = 4;
+  const fullTime = 8;
+  const perHourWage = 20;
+  
+  function generateDailyData() {
+      const randomCheck = Math.random();
+      let employeeStatus = randomCheck > 0.5 ? "Present" : "Absent";
+      let workType = Math.floor(Math.random() * 3); // Random work type
+  
+      let dailyWage = 0;
+      let dailyHours = 0;
+  
+      if (employeeStatus === "Present") {
+          switch (workType) {
+              case 1:    // part-time
+                  dailyWage = perHourWage * partTime;
+                  dailyHours = partTime;
+                  break;
+              case 2:    // full-time
+                  dailyWage = perHourWage * fullTime;
+                  dailyHours = fullTime;
+                  break;
+              default:   // no work, if workType is 0 (you can modify this behavior)
+                  dailyWage = 0;
+                  dailyHours = 0;
+          }
+      } else {
+          dailyWage = 0;
+          dailyHours = 0;
+      }
+  
+      return { dailyWage, dailyHours, employeeStatus };
+  }
+  
+  function checkAttendance() {
+      const { employeeStatus } = generateDailyData();
+      return employeeStatus;
+  }
+  
+  function calculateDailyWages() {
+      const { dailyWage, dailyHours } = generateDailyData();
+      return { dailyWages: dailyWage, workedHours: dailyHours };
+  }
+  
+
+function monthlySalary(month) {
+    let totalHours = 0;
+    let Salary = 0;
+    let totalDays = 0;
+
+    for (let i = 0; i < 20; i++) {  // 20 fixed days
+        let attendance = checkAttendance();
+        if (attendance === "Present") {
+            let result = calculateDailyWages();
+            totalDays++;
+            totalHours += result.workedHours;
+            Salary += result.dailyWages;
+        }
+    }
+    return { month, totalHours, Salary, totalDays };
+}
+
+function annualSalary(specificMonth) {
+    const months = Array.from({ length: 12 }, (_, i) => i + 1); 
+    
+    const selectedMonthData = months.filter(month => month === specificMonth).map(month => {
+        const result = monthlySalary(month);
+        console.log(`Month ${month}:`);
+        console.log("The Employee worked hours:", result.totalHours, ", monthly salary:", result.Salary, " and days:", result.totalDays);
+        return result;  
+    });
+
+    return selectedMonthData;
+}
+
+function userDetails() {
+    const numEmp = prompt("Enter the number of employees:");
+    let employees = [];
+    
+    for (let i = 0; i < numEmp; i++) {
+        let name = prompt("Enter employee name:");
+        employees.push({ name });  
+    }
+
+    const specificMonth = parseInt(prompt("Enter the month:"));
+
+    employees.filter(employee => {
+        console.log(`Employee name: ${employee.name}`);
+        annualSalary(specificMonth);  
+    });
+}
+
+userDetails();
+
   
