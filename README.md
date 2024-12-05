@@ -1,5 +1,17 @@
 # EmployeeWage_Shefali_1306
-Completed Employee Wage Assignment today,which determines if an employee is absent, working part-time (4 hours), or full-time (8 hours) using Math.random().
-Computes wages at $20 per hour based on work hours,Simulates up to 20 working days or a maximum of 160 total working hours,Outputs total working days, hours, wages, and a daily wage.
-Basically,calculates an employee's wages based on attendance and working hours.
+04-12-24:
+
+Completed Employee Wage Assignment today,which covered problems on:
+1. Check Employee is present or Absent( using Math.random() )
+2. Calculate Daily Employee Wage based on part time or full time work.
+3. Refactor the Code to write a function to get work hours.
+4. Calculating Wages for a Month assuming 20 Working Days in a Month
+5. Calculate Wages till a condition of total working hours of 160 or max days of 20 is re for a month.
+
+05-12-24:
+
+Covered various scenarios on Employee Wage problems:
+1. Calculate total salary month wise for one user.(All 12 month salary)
+2. Take name as input for multiple employees and print month wise salary for each employee.
+3. Take name and month as input and then print salary for each user for a specific month.
 
