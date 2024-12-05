@@ -121,8 +121,14 @@ let result = checkAttendanceAndCalculateWages();
 console.log("Total worked hours: " + result.workedHours);
 console.log("Final wages: $" + result.dailyWages);
 
-//Use Case: 4
+//Use case:4
 
+
+
+
+
+
+//Use Case: 5
 
 // Use case for Attendance Check
 function checkAttendance() {
@@ -197,3 +203,84 @@ function checkAttendance() {
   monthlySalary()
 
 
+//Use Case:6
+//(find 12 month salary and total hours and total days prsent )
+
+const partTime = 4;
+const fullTime = 8;
+const perHourWage = 20;
+
+function generateDailyData() {
+    const randomCheck = Math.random();
+    let employeeStatus = randomCheck > 0.5 ? "Present" : "Absent";
+    let workType = Math.floor(Math.random() * 3);
+
+    let dailyWage = 0;
+    let dailyHours = 0;
+
+    if (employeeStatus === "Present") {
+        switch (workType) {
+            case 1:    // part-time
+                dailyWage = perHourWage * partTime;
+                dailyHours = partTime;
+                break;
+            case 2:    // full-time
+                dailyWage = perHourWage * fullTime;
+                dailyHours = fullTime;
+                break;
+            default:
+                dailyWage = 0;
+                dailyHours = 0;
+        }
+    } else {
+        dailyWage = 0;
+        dailyHours = 0;
+    }
+
+    return { dailyWage, dailyHours, employeeStatus };
+}
+
+function calculateMonthlySalary() {
+    const daysInMonth = 20; // fix 20 days working
+    let monthlySalary = 0;
+    let totalHoursWorked = 0;
+    let totalDaysPresent = 0;
+
+    for (let day = 0; day < daysInMonth; day++) {
+        const { dailyWage, dailyHours, employeeStatus } = generateDailyData();
+        monthlySalary += dailyWage;
+        totalHoursWorked += dailyHours;
+        if (employeeStatus === "Present") {
+            totalDaysPresent++;
+        }
+    }
+
+    return { monthlySalary, totalHoursWorked, totalDaysPresent };
+}
+
+function annualSalary() {
+    let employee = [];
+
+    for (let i = 1; i <= 12; i++) {
+        const salaryAnnual = calculateMonthlySalary();
+        employee.push(salaryAnnual); 
+    }
+    return employee; 
+}
+
+const employeeData = annualSalary();
+
+let totalYearlySalary = 0;
+let totalHoursWorkedYearly = 0;
+let totalDaysPresentYearly = 0;
+
+employeeData.forEach((monthData) => {
+    totalYearlySalary += monthData.monthlySalary;
+    totalHoursWorkedYearly += monthData.totalHoursWorked;
+    totalDaysPresentYearly += monthData.totalDaysPresent;
+});
+
+console.log("\nAnnual Summary:");
+console.log(`Total Yearly Salary: $${totalYearlySalary}`);
+console.log(`Total Days Present in the Year: ${totalDaysPresentYearly}`);
+console.log(`Total Hours Worked in the Year: ${totalHoursWorkedYearly}`);
