@@ -249,7 +249,6 @@ function calculateDailyWages() {
   }
   monthlySalary()
 
-  */
  
   //Use Case-6: Calculate 12 month wise salary
 
@@ -319,10 +318,104 @@ function calculateDailyWages() {
   
       for (let i = 1; i <= 12; i++) { 
           console.log(`Month ${i}:`);
-          monthlySalary();   month
+          monthlySalary();   
       }
   }
   
   
   annualSalary();
+  
+  */
+
+
+  //Use Case-7: Take user input and store deatils of different employees
+
+  const partTime = 4;
+  const fullTime = 8;
+  const perHourWage = 20;
+  
+  function generateDailyData() {
+      const randomCheck = Math.random();
+      let employeeStatus = randomCheck > 0.5 ? "Present" : "Absent";
+      let workType = Math.floor(Math.random() * 3); // Random work type
+  
+      let dailyWage = 0;
+      let dailyHours = 0;
+  
+      if (employeeStatus === "Present") {
+          switch (workType) {
+              case 1:    // part-time
+                  dailyWage = perHourWage * partTime;
+                  dailyHours = partTime;
+                  break;
+              case 2:    // full-time
+                  dailyWage = perHourWage * fullTime;
+                  dailyHours = fullTime;
+                  break;
+              default:   // no work, if workType is 0 (you can modify this behavior)
+                  dailyWage = 0;
+                  dailyHours = 0;
+          }
+      } else {
+          dailyWage = 0;
+          dailyHours = 0;
+      }
+  
+      return { dailyWage, dailyHours, employeeStatus };
+  }
+  
+  function checkAttendance() {
+      const { employeeStatus } = generateDailyData();
+      return employeeStatus;
+  }
+  
+  function calculateDailyWages() {
+      const { dailyWage, dailyHours } = generateDailyData();
+      return { dailyWages: dailyWage, workedHours: dailyHours };
+  }
+  
+  function monthlySalary() {
+      let totalHours = 0;
+      let Salary = 0;
+      let totalDays = 0;
+  
+      for (let i = 0; i < 20; i++) {  //20 fixed days
+          let attendance = checkAttendance();
+          if (attendance === "Present") {
+              let result = calculateDailyWages();
+              totalDays++;
+              totalHours += result.workedHours;
+              Salary += result.dailyWages;
+          }
+      }
+      console.log("The Employee worked hours:", totalHours, ", monthly salary:", Salary, " and days:", totalDays);
+  }
+  
+  function annualSalary() {
+      let employee = [];
+  
+      for (let i = 1; i <= 12; i++) { 
+          console.log(`Month ${i}:`);
+          monthlySalary();   
+      }
+  }
+  
+  
+  function userDetails() {
+      const numEmp = prompt("Enter number of employees:");
+      let employees = [];
+      
+      for (let i = 0; i < numEmp; i++) {
+          let name = prompt("Enter the name:");
+          employees.push({ name });  
+      }
+  
+      employees.map(employee => {
+          console.log(`Employee name: ${employee.name}`);
+          annualSalary(); 
+      });
+  }
+  
+  userDetails();
+
   
