@@ -11,7 +11,7 @@ Completed Employee Wage Assignment today,which covered problems on:
 05-12-24:
 
 Covered various scenarios on Employee Wage problems:
-1. Calculate total salary month wise for one user.(All 12 month salary)
+1. Calculate total salary of 12 month for one user.
 2. Take name as input for multiple employees and print month wise salary for each employee.
 3. Take name and month as input and then print salary for each user for a specific month.
 
