@@ -325,8 +325,6 @@ function calculateDailyWages() {
   
   annualSalary();
   
-  */
-
 
   //Use Case-7: Take user input and store deatils of different employees
 
@@ -418,10 +416,12 @@ function calculateDailyWages() {
   
   userDetails();
 
+  */
+
+
   //Use case-8: take month as input and now print slary for eomployees for specific month
-
-
-const partTime = 4;
+  
+  const partTime = 4;
   const fullTime = 8;
   const perHourWage = 20;
   
@@ -465,12 +465,10 @@ const partTime = 4;
       return { dailyWages: dailyWage, workedHours: dailyHours };
   }
   
-
 function monthlySalary(month) {
     let totalHours = 0;
     let Salary = 0;
     let totalDays = 0;
-
     for (let i = 0; i < 20; i++) {  // 20 fixed days
         let attendance = checkAttendance();
         if (attendance === "Present") {
@@ -482,7 +480,6 @@ function monthlySalary(month) {
     }
     return { month, totalHours, Salary, totalDays };
 }
-
 function annualSalary(specificMonth) {
     const months = Array.from({ length: 12 }, (_, i) => i + 1); 
     
@@ -492,10 +489,8 @@ function annualSalary(specificMonth) {
         console.log("The Employee worked hours:", result.totalHours, ", monthly salary:", result.Salary, " and days:", result.totalDays);
         return result;  
     });
-
     return selectedMonthData;
 }
-
 function userDetails() {
     const numEmp = prompt("Enter the number of employees:");
     let employees = [];
@@ -504,15 +499,10 @@ function userDetails() {
         let name = prompt("Enter employee name:");
         employees.push({ name });  
     }
-
     const specificMonth = parseInt(prompt("Enter the month:"));
-
     employees.filter(employee => {
         console.log(`Employee name: ${employee.name}`);
         annualSalary(specificMonth);  
     });
 }
-
 userDetails();
-
-  
